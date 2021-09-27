@@ -1,0 +1,32 @@
+# Author: John Thompson	
+# Creation Date: 9/26/2021
+# Project: Task 2--Draft Program in a .py File
+import json
+from pip._vendor import requests
+def main():
+
+	print("Welcome to weather map!")
+	code = input("Please enter a zip code or country code:")
+	country="IN"
+	if code.isalpha():
+		code2=f"q={code},{country}"
+	else:
+		code2=f"zip={code},{country}"
+	url = 'http://samples.openweathermap.org/data/2.5/weather?'+code+'&appid=b1b15e88fa797225412429c1c50c122a1'
+	print(url)
+	print('requesting...')
+	call = requests.get(url)
+	if call.status_code == 200:
+		print("test1")
+		print('data received...')
+		data = json.loads(call.text)
+		print('Weather:')
+  
+		#print('name',data['name'])
+
+
+if __name__ == "__main__":
+    main()
+
+
+
