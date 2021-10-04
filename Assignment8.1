@@ -1,0 +1,30 @@
+# Author: John Thompson	
+# Creation Date: 10/3/2021
+# Assignment 8.1
+
+import os
+
+def main():
+    print("Welcome to Assignment 8!")
+    path = input("Please enter the directory you would like your file saved to:")
+    while not (os.path.isdir(path)):
+        print("Invalid directory!")
+        path = input("Please enter the directory you would like your file saved to:")
+    file=input("Enter your filename:")
+    name=input("Enter your name:")
+    address=input("Enter your address:")
+    phone=input("Enter your phone number:")
+
+    wfile = os.open(os.path.join(path, file), os.O_RDWR)
+    os.write(wfile, str.encode(name+', '+address+', '+phone+'\n'))
+    os.close(wfile)
+    rfile=open(os.path.join(path,file),'r')
+    for line in rfile:
+        print(line)
+    rfile.close()
+
+
+
+
+if __name__ == "__main__":
+    main()
